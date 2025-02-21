@@ -1,2 +1,1 @@
-web: gunicorn -b 0.0.0.0:5000 model:app
-
+web: gunicorn model:app --bind 0.0.0.0:$PORT
