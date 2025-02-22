@@ -83,7 +83,8 @@ def predict():
 
 
 if __name__ == '__main__':
-    port = int(os.getenv("PORT", 5000))  # ใช้ PORT จาก Railway
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Starting the app on port {port}")  # เพิ่มข้อความ log
     app.run(host="0.0.0.0", port=port)
 
 
