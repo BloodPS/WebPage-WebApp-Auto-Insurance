@@ -6,6 +6,10 @@ import pandas as pd
 import time
 from sklearn.model_selection import train_test_split
 from sklearn.multioutput import MultiOutputRegressor
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import pickle
+import os
 
 #df = pd.read_csv('df_HasC.csv')
 df = pd.read_csv('data_claims_cleaned.csv')
@@ -28,12 +32,6 @@ with open('model.pkl', 'wb') as file:
     pickle.dump(model, file)
 
 
-
-
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import pickle
-import os
 
 app = Flask(__name__)
 CORS(app)
@@ -85,7 +83,7 @@ def predict():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # ใช้ PORT จาก Railway
+    port = int(os.getenv("PORT", 5000))  # ใช้ PORT จาก Railway
     app.run(host="0.0.0.0", port=port)
 
 
